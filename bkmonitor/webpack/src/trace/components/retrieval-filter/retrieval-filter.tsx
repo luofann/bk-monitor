@@ -456,7 +456,7 @@ export default defineComponent({
         class='vue3_retrieval-filter__component'
       >
         <div class='retrieval-filter__component-main'>
-          {!this.onlyUiMode && (
+          {!this.onlyUiMode && !this.onlyQSMode && (
             <div
               class='component-left'
               onClick={() => this.handleChangeMode()}
@@ -479,7 +479,7 @@ export default defineComponent({
           )}
           {this.$slots?.default?.()}
           <div class={['filter-content', { 'bg-fff0f0': this.isShowQueryStringError }]}>
-            {this.mode === EMode.ui || this.onlyUiMode ? (
+            {(this.mode === EMode.ui || this.onlyUiMode) && !this.onlyQSMode ? (
               <UiSelector
                 clearKey={this.clearKey}
                 fields={this.localFields}
